@@ -1,5 +1,6 @@
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const { join } = require("path");
+const { VueLoaderPlugin } = require("vue-loader");
 module.exports = {
   //   mode: "production",
   mode: "development",
@@ -18,6 +19,7 @@ module.exports = {
       // 建议是绝对路径
       template: join(__dirname, "public/index.html"),
     }),
+    new VueLoaderPlugin(),
   ],
   module: {
     rules: [
@@ -49,6 +51,10 @@ module.exports = {
       {
         test: /\.js$/i,
         use: ["babel-loader"],
+      },
+      {
+        test: /\.vue$/i,
+        loader: "vue-loader",
       },
     ],
   },
