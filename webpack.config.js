@@ -1,6 +1,8 @@
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const { join } = require("path");
 module.exports = {
+  //   mode: "production",
+  mode: "development",
   entry: "./src/main.js",
   output: {
     path: join(__dirname, "lib"),
@@ -9,8 +11,8 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-        // 建议是绝对路径
-        template:join(__dirname,'public/index.html')
-    })
-]
+      // 建议是绝对路径
+      template: join(__dirname, "public/index.html"),
+    }),
+  ],
 };
