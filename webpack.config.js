@@ -1,6 +1,7 @@
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const { join } = require("path");
 const { VueLoaderPlugin } = require("vue-loader");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 module.exports = {
   //   mode: "production",
   mode: "development",
@@ -20,13 +21,10 @@ module.exports = {
       template: join(__dirname, "public/index.html"),
     }),
     new VueLoaderPlugin(),
+    new MiniCssExtractPlugin(),
   ],
   module: {
     rules: [
-      {
-        test: /\.css$/i,
-        use: ["style-loader", "css-loader"],
-      },
       {
         test: /\.less$/i,
         use: ["style-loader", "css-loader", "less-loader"],
@@ -55,6 +53,10 @@ module.exports = {
       {
         test: /\.vue$/i,
         loader: "vue-loader",
+      },
+      {
+        test: /\.css$/i,
+        use: [MiniCssExtractPlugin.loader, "css-loader"],
       },
     ],
   },
